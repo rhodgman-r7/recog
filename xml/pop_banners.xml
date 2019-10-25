@@ -274,6 +274,26 @@
     <param pos="0" name="os.cpe23" value="cpe:/o:microsoft:windows:-"/>
     <param pos="1" name="service.version"/>
   </fingerprint>
+  <fingerprint pattern="^Welcome to MailEnable POP3 Server\s?(&lt;[\d.-]+@[\w-]+\&gt;)?[.]?$">
+    <description>MailEnable POP3 no version</description>
+    <example>Welcome to MailEnable POP3 Server</example>
+    <example>Welcome to MailEnable POP3 Server.</example>
+    <example>Welcome to MailEnable POP3 Server &lt;90896.-33439625@bh-plesk-web3&gt;</example>
+    <example>Welcome to MailEnable POP3 Server &lt;884.5262500@GN1&gt;</example>
+    <param pos="0" name="service.vendor" value="MailEnable"/>
+    <param pos="0" name="service.family" value="MailEnable"/>
+    <param pos="0" name="service.product" value="MailEnable"/>
+    <param pos="0" name="service.cpe23" value="cpe:/a:mailenable:mailenable:-"/>
+  </fingerprint>
+  <fingerprint pattern="^([^ ]+) IdeaPop3Server ((\d+\.)+\d+) ready.$">
+    <description>Idea POP3 Server</description>
+    <example host.name="localhost" service.version="0.83.267">localhost IdeaPop3Server 0.83.267 ready.</example>
+    <example host.name="hostname.home.pl" service.version="0.83.267">hostname.home.pl IdeaPop3Server 0.83.267 ready.</example>
+    <param pos="1" name="host.name"/>
+    <param pos="2" name="service.version"/>
+    <param pos="0" name="service.vendor" value="Idea"/>
+    <param pos="0" name="service.product" value="POP3 Server"/>
+  </fingerprint>
   <!--
 ; Mandrake 8.1 - uses UW IMAP
 ; +OK POP3 mandrake81-f540k v2000.70mdk server ready
