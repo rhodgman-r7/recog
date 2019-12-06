@@ -1170,7 +1170,7 @@
   <fingerprint pattern="HP-UX ([^ ]+) [A-Z]\.([^ ]+) ([^ ]+) ([^ ]+)\s([^ ]+\)).*$">
     <description>System HP-UX</description>
     <!-- HP-UX ctout B.11.11 U 9000/800 (tc)\nlogin: -->
-    <example _encoding="base64" host.name="ctout" os.version="11.11" hw.series="9000/800" hw.model="(tc)">
+    <example _encoding="base64" host.name="ctout" os.version="11.11" hw.version="U" hw.series="9000/800" hw.model="(tc)">
       SFAtVVggY3RvdXQgQi4xMS4xMSBVIDkwMDAvODAwICh0YykKCmxvZ2luOiA=
     </example>
     <param pos="0" name="os.vendor" value="HP"/>
