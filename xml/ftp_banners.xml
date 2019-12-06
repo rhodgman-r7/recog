@@ -406,9 +406,11 @@ more text</example>
     <param pos="0" name="service.product" value="vsFTPd"/>
     <param pos="1" name="service.version"/>
   </fingerprint>
-  <fingerprint pattern="^vsFTPd ([\d.]+\+ \(ext\.3\)) ready\.\.\.$">
+  <fingerprint pattern="^vsFTPd ([\d.]+\+ \(ext\.\d+\)) ready\.\.\.$">
     <description>vsFTPd (Very Secure FTP Daemon) extended build (vsftpd.devnet.ru)</description>
     <example service.version="2.0.4+ (ext.3)">vsFTPd 2.0.4+ (ext.3) ready...</example>
+    <example service.version="2.0.7+ (ext.1)">vsFTPd 2.0.7+ (ext.1) ready...</example>
+    <example service.version="2.2.2+ (ext.10)">vsFTPd 2.2.2+ (ext.10) ready...</example>
     <param pos="0" name="service.family" value="vsFTPd"/>
     <param pos="0" name="service.product" value="vsFTPd Extended"/>
     <param pos="1" name="service.version"/>
@@ -458,9 +460,9 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^(\S+) FTP server \(EMC-SNAS: ([^\)]+)\)(?: \S+)?$">
     <description>EMC Celerra</description>
-    <example service.version="5.6.47.11">foo2 FTP server (EMC-SNAS: 5.6.47.11)</example>
-    <example service.version="5.6.50.203">foo2 FTP server (EMC-SNAS: 5.6.50.203) ready.</example>
-    <example service.version="5.5.31.6">foo4 FTP server (EMC-SNAS: 5.5.31.6) r</example>
+    <example host.name="foo2" service.version="5.6.47.11" os.version="5.6.47.11">foo2 FTP server (EMC-SNAS: 5.6.47.11)</example>
+    <example host.name="foo2" service.version="5.6.50.203" os.version="5.6.50.203">foo2 FTP server (EMC-SNAS: 5.6.50.203) ready.</example>
+    <example host.name="foo4" service.version="5.5.31.6" os.version="5.5.31.6">foo4 FTP server (EMC-SNAS: 5.5.31.6) r</example>
     <param pos="0" name="service.vendor" value="EMC"/>
     <param pos="0" name="service.product" value="Celerra"/>
     <param pos="2" name="service.version"/>
@@ -521,7 +523,7 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^[^ ]+ IBM FTP CS (V1R\d+) at ([^,]*),.*">
     <description>IBM z/OS FTP Service</description>
-    <example>SFTPD1 IBM FTP CS V1R4 at x.y.z, 21:02:19 on 2007-12-15.</example>
+    <example os.version="V1R4" host.name="x.y.z">SFTPD1 IBM FTP CS V1R4 at x.y.z, 21:02:19 on 2007-12-15.</example>
     <param pos="0" name="service.vendor" value="IBM"/>
     <param pos="0" name="service.product" value="z/OS FTP Server"/>
     <param pos="0" name="os.vendor" value="IBM"/>
@@ -544,14 +546,14 @@ more text</example>
   <fingerprint pattern="^([^ ]+) NcFTPd Server \(licensed copy\) ready\.$">
     <description>NcFTPd Server
       http://www.ncftp.com/ncftpd/</description>
-    <example>ftp.example.com NcFTPd Server (licensed copy) ready.</example>
+    <example host.name="ftp.example.com">ftp.example.com NcFTPd Server (licensed copy) ready.</example>
     <param pos="0" name="service.vendor" value="NcFTP Software"/>
     <param pos="0" name="service.product" value="NcFTPd Server"/>
     <param pos="1" name="host.name"/>
   </fingerprint>
   <fingerprint pattern="^(\S+) DCS-2100 FTP server ready\.$">
     <description>D-Link DCS-2100 wireless internet camera</description>
-    <example>hostname DCS-2100 FTP server ready.</example>
+    <example host.name="hostname">hostname DCS-2100 FTP server ready.</example>
     <param pos="0" name="os.vendor" value="D-Link"/>
     <param pos="0" name="os.product" value="DCS-2100"/>
     <param pos="0" name="os.device" value="Web cam"/>
@@ -567,7 +569,7 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^SUN StorEdge (\S+) RAID FTP server ready\.$">
     <description>Sun StorEdge disk array</description>
-    <example>SUN StorEdge 3511 RAID FTP server ready.</example>
+    <example os.product="3511">SUN StorEdge 3511 RAID FTP server ready.</example>
     <param pos="0" name="os.vendor" value="Sun"/>
     <param pos="0" name="os.family" value="StorEdge"/>
     <param pos="1" name="os.product"/>
@@ -634,14 +636,14 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^NRG ((?:[MS]P )?\S+) FTP server \(([0-9\.a-zA-Z]+)\) ready.?$" flags="REG_ICASE">
     <description>Ricoh NRG multifunction device</description>
-    <example>NRG MP C2800 FTP server (8.25) ready.</example>
-    <example>NRG MP 3350 FTP server (7.05) ready.</example>
-    <example>NRG MP C3500 FTP server (5.17) ready.</example>
-    <example>NRG MP 171 FTP server (9.02.1) ready.</example>
-    <example>NRG MP C2550 FTP server (8.25) ready.</example>
-    <example>NRG MP C3500 FTP server (5.19) ready.</example>
-    <example>NRG MP C4000 FTP server (8.30) ready.</example>
-    <example>NRG MP C4500 FTP server (5.14) ready.</example>
+    <example os.product="MP C2800" os.version="8.25" hw.product="MP C2800">NRG MP C2800 FTP server (8.25) ready.</example>
+    <example os.product="MP 3350" os.version="7.05" hw.product="MP 3350">NRG MP 3350 FTP server (7.05) ready.</example>
+    <example os.product="MP C3500" os.version="5.17" hw.product="MP C3500">NRG MP C3500 FTP server (5.17) ready.</example>
+    <example os.product="MP 171" os.version="9.02.1" hw.product="MP 171">NRG MP 171 FTP server (9.02.1) ready.</example>
+    <example os.product="MP C2550" os.version="8.25" hw.product="MP C2550">NRG MP C2550 FTP server (8.25) ready.</example>
+    <example os.product="MP C3500" os.version="5.19" hw.product="MP C3500">NRG MP C3500 FTP server (5.19) ready.</example>
+    <example os.product="MP C4000" os.version="8.30" hw.product="MP C4000">NRG MP C4000 FTP server (8.30) ready.</example>
+    <example os.product="MP C4500" os.version="5.14" hw.product="MP C4500">NRG MP C4500 FTP server (5.14) ready.</example>
     <param pos="0" name="os.vendor" value="Ricoh"/>
     <param pos="0" name="os.device" value="Multifunction Device"/>
     <param pos="1" name="os.product"/>
@@ -666,8 +668,8 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^Xerox Phaser (\S+)$" certainty="1.0">
     <description>Xerox Phaser Laser Printer</description>
-    <example>Xerox Phaser 6130N</example>
-    <example>Xerox Phaser 6180MFP-D</example>
+    <example os.product="6130N" hw.product="6130N">Xerox Phaser 6130N</example>
+    <example os.product="6180MFP-D" hw.product="6180MFP-D">Xerox Phaser 6180MFP-D</example>
     <param pos="0" name="os.vendor" value="Xerox"/>
     <param pos="0" name="os.family" value="Phaser"/>
     <param pos="0" name="os.device" value="Printer"/>
@@ -679,7 +681,7 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^XEROX (\d+) Wide Format .*$" certainty="1.0">
     <description>Xerox Wide Format Series of Printers</description>
-    <example>XEROX 6204 Wide Format FTP server ready</example>
+    <example os.product="6204" hw.product="6204">XEROX 6204 Wide Format FTP server ready</example>
     <param pos="0" name="os.vendor" value="Xerox"/>
     <param pos="0" name="os.family" value="Wide Format"/>
     <param pos="0" name="os.device" value="Printer"/>
@@ -691,9 +693,17 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^FUJI XEROX DocuPrint (.*)$" certainty="1.0">
     <description>FUJI XEROX DocuPrint Series of Printers</description>
-    <example>FUJI XEROX DocuPrint 3055</example>
-    <example>FUJI XEROX DocuPrint C1190 FS</example>
-    <example>FUJI XEROX DocuPrint C2100</example>
+    <example os.product="3055">FUJI XEROX DocuPrint 3055</example>
+    <example os.product="C1190 FS">FUJI XEROX DocuPrint C1190 FS</example>
+    <example os.product="C2100">FUJI XEROX DocuPrint C2100</example>
+    <param pos="0" name="os.vendor" value="FUJI XEROX"/>
+    <param pos="0" name="os.family" value="DocuPrint"/>
+    <param pos="0" name="os.device" value="Printer"/>
+    <param pos="1" name="os.product"/>
+  </fingerprint>
+  <fingerprint pattern="^FUJI XEROX DocuCentre (.*)$" certainty="1.0">
+    <description>FUJI XEROX DocuCentre Series of Printers</description>
+    <example os.product="SC2020">FUJI XEROX DocuCentre SC2020</example>
     <param pos="0" name="os.vendor" value="FUJI XEROX"/>
     <param pos="0" name="os.family" value="DocuPrint"/>
     <param pos="0" name="os.device" value="Printer"/>
@@ -782,8 +792,8 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^TASKalfa (\d+c?i) FTP server" certainty="1.0">
     <description>Taskalfa Series of Printers</description>
-    <example>TASKalfa 300ci FTP server</example>
-    <example>TASKalfa 520i FTP server</example>
+    <example os.product="300ci" hw.product="300ci">TASKalfa 300ci FTP server</example>
+    <example os.product="520i" hw.product="520i">TASKalfa 520i FTP server</example>
     <param pos="0" name="os.vendor" value="Kyocera"/>
     <param pos="0" name="os.family" value="TASKalfa"/>
     <param pos="0" name="os.device" value="Multifunction Device"/>
@@ -815,8 +825,8 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^Oce (im\d+) Ver (\S+) FTP server\.$" certainty="1.0">
     <description>OCE IM series Printer</description>
-    <example>Oce im4512 Ver 01.04.00.0c FTP server.</example>
-    <example>Oce im3512 Ver 01.04.00.0c FTP server.</example>
+    <example os.product="im4512" os.version="01.04.00.0c">Oce im4512 Ver 01.04.00.0c FTP server.</example>
+    <example os.product="im3512" os.version="01.04.00.0c">Oce im3512 Ver 01.04.00.0c FTP server.</example>
     <param pos="0" name="os.vendor" value="Oce"/>
     <param pos="0" name="os.device" value="Multifunction Device"/>
     <param pos="0" name="os.family" value="IM Series"/>
@@ -825,7 +835,7 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^Oce (Plotwave\d+) FTP Service \(Version (\S+)\)\.$" certainty="1.0">
     <description>OCE Printer</description>
-    <example>Oce Plotwave300 FTP Service (Version 4.5.7).</example>
+    <example os.product="Plotwave300" os.version="4.5.7">Oce Plotwave300 FTP Service (Version 4.5.7).</example>
     <param pos="0" name="os.vendor" value="Oce"/>
     <param pos="0" name="os.device" value="Printer"/>
     <param pos="0" name="os.family" value="Plotwave Series"/>
@@ -851,10 +861,10 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^LXKE\S+ IBM Infoprint (\d+) FTP Server (\d+\.\d+\.\d+) ready.$" certainty="1.0">
     <description>IBM Infoprint FTP</description>
-    <example>LXKE82124 IBM Infoprint 1332 FTP Server 55.10.21 ready.</example>
-    <example>LXKE8255D IBM Infoprint 1332 FTP Server 55.10.21 ready.</example>
-    <example>LXKE825A0 IBM Infoprint 1332 FTP Server 55.10.21 ready.</example>
-    <example>LXKE93276 IBM Infoprint 1332 FTP Server 55.10.19 ready.</example>
+    <example os.product="1332" os.version="55.10.21">LXKE82124 IBM Infoprint 1332 FTP Server 55.10.21 ready.</example>
+    <example os.product="1332" os.version="55.10.21">LXKE8255D IBM Infoprint 1332 FTP Server 55.10.21 ready.</example>
+    <example os.product="1332" os.version="55.10.21">LXKE825A0 IBM Infoprint 1332 FTP Server 55.10.21 ready.</example>
+    <example os.product="1332" os.version="55.10.19">LXKE93276 IBM Infoprint 1332 FTP Server 55.10.19 ready.</example>
     <param pos="0" name="os.vendor" value="Ricoh"/>
     <param pos="0" name="os.family" value="Infoprint"/>
     <param pos="0" name="os.device" value="Printer"/>
@@ -865,9 +875,9 @@ more text</example>
     <description>Gestetner Printer FTP</description>
     <example os.product="Gestetner MP5500/DSm755" os.version="5.11c">Gestetner MP5500/DSm755 FTP server (5.11c) ready.</example>
     <example os.product="Gestetner MP C4502" os.version="11.77">Gestetner MP C4502 FTP server (11.77) ready.</example>
-    <example>Gestetner MP 161/DSm416 FTP server (6.11) ready. </example>
-    <example>Gestetner 3502 FTP server (1.66.1) ready</example>
-    <example>Gestetner C7526dn FTP server (6.05.1) ready.</example>
+    <example os.product="Gestetner MP 161/DSm416" os.version="6.11">Gestetner MP 161/DSm416 FTP server (6.11) ready. </example>
+    <example os.product="Gestetner 3502" os.version="1.66.1">Gestetner 3502 FTP server (1.66.1) ready</example>
+    <example os.product="Gestetner C7526dn" os.version="6.05.1">Gestetner C7526dn FTP server (6.05.1) ready.</example>
     <param pos="0" name="os.vendor" value="Ricoh"/>
     <param pos="0" name="os.device" value="Multifunction Device"/>
     <param pos="1" name="os.product"/>
@@ -875,14 +885,14 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^(Gestetner \S+)$" certainty="1.0">
     <description>Gestetner Printer FTP - short banner</description>
-    <example>Gestetner MPC2500</example>
+    <example os.product="Gestetner MPC2500">Gestetner MPC2500</example>
     <param pos="0" name="os.vendor" value="Ricoh"/>
     <param pos="0" name="os.device" value="Multifunction Device"/>
     <param pos="1" name="os.product"/>
   </fingerprint>
   <fingerprint pattern="^EUFSALE MarkNet (\S+) FTP Server (\d+\.\d+\.\d+) ready.$" certainty="1.0">
     <description>Lexmark Marknet Printers FTP</description>
-    <example>EUFSALE MarkNet X2011e FTP Server 4.20.21 ready.</example>
+    <example os.product="X2011e" os.version="4.20.21">EUFSALE MarkNet X2011e FTP Server 4.20.21 ready.</example>
     <param pos="0" name="os.vendor" value="Lexmark"/>
     <param pos="0" name="os.family" value="MarkNet"/>
     <param pos="0" name="os.device" value="Print server"/>
@@ -891,9 +901,9 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^ET(\S+) Source Technologies (ST-96\S+) FTP Server (\S+) ready\.?$">
     <description>Source Technologies ST9600 Series Secure Printer</description>
-    <example>ET0021B730F70E Source Technologies ST-9620 FTP Server NJ.APS.N254e ready.</example>
-    <example>ET0021B7549AF2 Source Technologies ST-9620 FTP Server NR.APS.N447b2 ready.</example>
-    <example>ET0021B7300F01 Source Technologies ST-9620 FTP Server NJ.APS.N254e ready.</example>
+    <example host.mac="0021B730F70E" os.product="ST-9620" os.version="NJ.APS.N254e">ET0021B730F70E Source Technologies ST-9620 FTP Server NJ.APS.N254e ready.</example>
+    <example host.mac="0021B7549AF2" os.product="ST-9620" os.version="NR.APS.N447b2">ET0021B7549AF2 Source Technologies ST-9620 FTP Server NR.APS.N447b2 ready.</example>
+    <example host.mac="0021B7300F01" os.product="ST-9620" os.version="NJ.APS.N254e">ET0021B7300F01 Source Technologies ST-9620 FTP Server NJ.APS.N254e ready.</example>
     <param pos="0" name="os.vendor" value="Source Technologies"/>
     <param pos="0" name="os.family" value="ST9600 Series"/>
     <param pos="0" name="os.device" value="Printer"/>
@@ -915,7 +925,7 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^ET(\S+) Lexmark Forms Printer (\d+) Ethernet FTP Server (\S+) ready\.$" certainty="1.0">
     <description>Lexmark Forms Printer</description>
-    <example os.product="2590">ET0020004F54EE Lexmark Forms Printer 2590 Ethernet FTP Server LCL.CU.P012c ready.</example>
+    <example host.mac="0020004F54EE" os.product="2590" os.version="LCL.CU.P012c" hw.product="2590">ET0020004F54EE Lexmark Forms Printer 2590 Ethernet FTP Server LCL.CU.P012c ready.</example>
     <param pos="0" name="os.vendor" value="Lexmark"/>
     <param pos="0" name="os.family" value="Forms Printer"/>
     <param pos="0" name="os.device" value="Printer"/>
@@ -953,8 +963,8 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^.*Lexmark Optra (\S+) FTP Server (\S+) ready\.$" certainty="1.0">
     <description>Lexmark Optra Printer</description>
-    <example os.product="T612">lex142785470853 Lexmark Optra T612 FTP Server 3.20.30 ready.</example>
-    <example os.version="3.20.20">oppr1.s02504.us Lexmark Optra T610 FTP Server 3.20.20 ready.</example>
+    <example os.product="T612" os.version="3.20.30" hw.product="T612">lex142785470853 Lexmark Optra T612 FTP Server 3.20.30 ready.</example>
+    <example os.product="T610" os.version="3.20.20" hw.product="T610">oppr1.s02504.us Lexmark Optra T610 FTP Server 3.20.20 ready.</example>
     <param pos="0" name="os.vendor" value="Lexmark"/>
     <param pos="0" name="os.family" value="Optra"/>
     <param pos="0" name="os.device" value="Printer"/>
@@ -967,15 +977,15 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^SHARP (MX-\S+) Ver (\S+) FTP server\.$" certainty="1.0">
     <description>Sharp Printer/Copier/Scanne</description>
-    <example os.product="MX-6200N" os.version="01.02.00.0e">SHARP MX-6200N Ver 01.02.00.0e FTP server.</example>
-    <example>SHARP MX-M363N Ver 01.05.00.0k FTP server.</example>
-    <example>SHARP MX-M363N Ver 01.05.00.1k FTP server.</example>
-    <example>SHARP MX-5001N Ver 01.05.00.0n FTP server.</example>
-    <example>SHARP MX-5500N Ver 01.02.00.09 FTP server.</example>
-    <example>SHARP MX-M453N Ver 01.05.00.0k FTP server.</example>
-    <example>SHARP MX-M503N Ver 01.05.00.1k FTP server.</example>
-    <example>SHARP MX-M620U Ver 01.03.00 FTP server.</example>
-    <example>SHARP MX-M620U Ver 01.04.00.04 FTP server.</example>
+    <example os.product="MX-6200N" os.version="01.02.00.0e" hw.product="MX-6200N">SHARP MX-6200N Ver 01.02.00.0e FTP server.</example>
+    <example os.product="MX-M363N" os.version="01.05.00.0k" hw.product="MX-M363N">SHARP MX-M363N Ver 01.05.00.0k FTP server.</example>
+    <example os.product="MX-M363N" os.version="01.05.00.1k" hw.product="MX-M363N">SHARP MX-M363N Ver 01.05.00.1k FTP server.</example>
+    <example os.product="MX-5001N" os.version="01.05.00.0n" hw.product="MX-5001N">SHARP MX-5001N Ver 01.05.00.0n FTP server.</example>
+    <example os.product="MX-5500N" os.version="01.02.00.09" hw.product="MX-5500N">SHARP MX-5500N Ver 01.02.00.09 FTP server.</example>
+    <example os.product="MX-M453N" os.version="01.05.00.0k" hw.product="MX-M453N">SHARP MX-M453N Ver 01.05.00.0k FTP server.</example>
+    <example os.product="MX-M503N" os.version="01.05.00.1k" hw.product="MX-M503N">SHARP MX-M503N Ver 01.05.00.1k FTP server.</example>
+    <example os.product="MX-M620U" os.version="01.03.00" hw.product="MX-M620U">SHARP MX-M620U Ver 01.03.00 FTP server.</example>
+    <example os.product="MX-M620U" os.version="01.04.00.04" hw.product="MX-M620U">SHARP MX-M620U Ver 01.04.00.04 FTP server.</example>
     <param pos="0" name="os.vendor" value="Sharp"/>
     <param pos="0" name="os.device" value="Printer"/>
     <param pos="0" name="os.family" value="MX Series"/>
@@ -1071,7 +1081,7 @@ more text</example>
   <!-- Conjectured based on known MX FTP fingerprints -->
   <fingerprint pattern="^SHARP (AR-\S+) Ver (\S+) FTP server">
     <description>Sharp AR Series multifunction device</description>
-    <example os.product="AR-M450">SHARP AR-M450 Ver 01.05.00.0k FTP server.</example>
+    <example os.product="AR-M450" os.version="01.05.00.0k" hw.product="AR-M450">SHARP AR-M450 Ver 01.05.00.0k FTP server.</example>
     <param pos="0" name="os.vendor" value="Sharp"/>
     <param pos="0" name="os.device" value="Multifunction Device"/>
     <param pos="0" name="os.family" value="AR Series"/>
@@ -1113,9 +1123,9 @@ more text</example>
   </fingerprint>
   <fingerprint pattern="^(ZBR-\d+) Version (\S+) ready\.?$">
     <description>ZebraNet Print Server FTP</description>
-    <example os.product="ZBR-46686">ZBR-46686 Version 7.02 ready.</example>
-    <example os.version="V56.17.5Z">ZBR-79071 Version V56.17.5Z ready.</example>
-    <example os.version="7.02">ZBR-46687 Version 7.02 ready.</example>
+    <example os.product="ZBR-46686" os.version="7.02" hw.product="ZBR-46686">ZBR-46686 Version 7.02 ready.</example>
+    <example os.product="ZBR-79071" os.version="V56.17.5Z" hw.product="ZBR-79071">ZBR-79071 Version V56.17.5Z ready.</example>
+    <example os.product="ZBR-46687" os.version="7.02" hw.product="ZBR-46687">ZBR-46687 Version 7.02 ready.</example>
     <param pos="0" name="os.vendor" value="ZebraNet"/>
     <param pos="0" name="os.device" value="Print server"/>
     <param pos="1" name="os.product"/>
