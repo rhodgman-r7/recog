@@ -6,7 +6,7 @@
   -->
   <fingerprint pattern="^([^ ]+) Microsoft FTP Service \(Version ([1234]\.\d+)\)\.$">
     <description>Microsoft FTP Server on Windows NT</description>
-    <example>xx Microsoft FTP Service (Version 3.0).</example>
+    <example host.name="xx" service.version="3.0">xx Microsoft FTP Service (Version 3.0).</example>
     <param pos="0" name="service.vendor" value="Microsoft"/>
     <param pos="0" name="service.product" value="IIS"/>
     <param pos="0" name="service.family" value="IIS"/>
@@ -20,7 +20,7 @@
   </fingerprint>
   <fingerprint pattern="^([^ ]+) Microsoft FTP Service \(Version 5.0\)\.$">
     <description>Microsoft FTP Server on Windows 2000</description>
-    <example>xxx Microsoft FTP Service (Version 5.0).</example>
+    <example host.name="xxx">xxx Microsoft FTP Service (Version 5.0).</example>
     <param pos="0" name="service.vendor" value="Microsoft"/>
     <param pos="0" name="service.product" value="IIS"/>
     <param pos="0" name="service.family" value="IIS"/>
@@ -34,7 +34,7 @@
   </fingerprint>
   <fingerprint pattern="^([^ ]+) Microsoft FTP Service \(Version 5.1\)\.$">
     <description>Microsoft FTP Server on Windows XP, 2003 or later versions of 2000</description>
-    <example>xxx Microsoft FTP Service (Version 5.1).</example>
+    <example host.name="xxx">xxx Microsoft FTP Service (Version 5.1).</example>
     <param pos="0" name="service.vendor" value="Microsoft"/>
     <param pos="0" name="service.product" value="IIS"/>
     <param pos="0" name="service.family" value="IIS"/>
@@ -47,7 +47,7 @@
   </fingerprint>
   <fingerprint pattern="^([^ ]+) Microsoft FTP Service$">
     <description>Microsoft FTP Server on Windows XP, 2003 or later without version</description>
-    <example>hostname Microsoft FTP Service</example>
+    <example host.name="hostname">hostname Microsoft FTP Service</example>
     <param pos="0" name="service.vendor" value="Microsoft"/>
     <param pos="0" name="service.product" value="IIS"/>
     <param pos="0" name="service.family" value="IIS"/>
@@ -72,7 +72,7 @@
   </fingerprint>
   <fingerprint pattern="^([^ ]+) +FTP +Server \(Version ([^\(]+)\(PHNE_\d+\) [^\)]+\) ready.?$" flags="REG_ICASE">
     <description>FTP on HPUX with a PHNE (HP Networking patch) installed</description>
-    <example>example.com FTP server (Version 1.1.214.4(PHNE_38458) Mon Feb 15 06:03:12 GMT 2010) ready.</example>
+    <example host.name="example.com" service.version="1.1.214.4">example.com FTP server (Version 1.1.214.4(PHNE_38458) Mon Feb 15 06:03:12 GMT 2010) ready.</example>
     <param pos="0" name="service.vendor" value="HP"/>
     <param pos="0" name="service.product" value="FTPD"/>
     <param pos="0" name="os.vendor" value="HP"/>
@@ -84,7 +84,7 @@
   </fingerprint>
   <fingerprint pattern="^([^ ]+) +FTP +Server \(Revision \S+ Version wuftpd-([^\(]+)\(PHNE_\d+\) [^\)]+\) ready.?$" flags="REG_ICASE">
     <description>WU-FTPD on HPUX with a PHNE (HP Networking patch) installed</description>
-    <example>example.com FTP server (Revision 1.1 Version wuftpd-2.6.1(PHNE_38578) Fri Sep 5 12:10:54 GMT 2008) ready.</example>
+    <example host.name="example.com" service.version="2.6.1">example.com FTP server (Revision 1.1 Version wuftpd-2.6.1(PHNE_38578) Fri Sep 5 12:10:54 GMT 2008) ready.</example>
     <param pos="0" name="service.vendor" value="Washington University"/>
     <param pos="0" name="service.product" value="WU-FTPD"/>
     <param pos="0" name="os.vendor" value="HP"/>
@@ -172,7 +172,7 @@ example.com FTP server (Version:  Mac OS X Server) ready.</example>
   </fingerprint>
   <fingerprint pattern="^ProFTPD (\d+\.[^\s]+) Server \(Debian\) \[(.+)\]$">
     <description>ProFTPD on Debian Linux</description>
-    <example>ProFTPD 1.3.0rc2 Server (Debian) [host]</example>
+    <example service.version="1.3.0rc2" host.name="host">ProFTPD 1.3.0rc2 Server (Debian) [host]</example>
     <param pos="0" name="service.family" value="ProFTPD"/>
     <param pos="0" name="service.vendor" value="ProFTPD Project"/>
     <param pos="0" name="service.product" value="ProFTPD"/>
@@ -186,7 +186,7 @@ example.com FTP server (Version:  Mac OS X Server) ready.</example>
   </fingerprint>
   <fingerprint pattern="^ProFTPD (\d+\.[^\s]+) Server \(Linksys(W.+)\) \[(.+)\]$">
     <description>ProFTPD on a Linksys Wireless Access Point/Router</description>
-    <example>ProFTPD 1.3.0rc2 Server (LinksysWRT350N) [host]</example>
+    <example service.version="1.3.0rc2" os.product="WRT350N" host.name="host">ProFTPD 1.3.0rc2 Server (LinksysWRT350N) [host]</example>
     <param pos="0" name="service.family" value="ProFTPD"/>
     <param pos="0" name="service.vendor" value="ProFTPD Project"/>
     <param pos="0" name="service.product" value="ProFTPD"/>
@@ -334,15 +334,18 @@ more stuff</example>
     <param pos="0" name="service.product" value="Pure-FTPd"/>
     <param pos="1" name="service.version"/>
   </fingerprint>
-  <fingerprint pattern="^-{9,10}(?:.*)\s+Pure-FTPd\s+(.*)-{9,10}">
+  <fingerprint pattern="^-{9,10}(?:.*)\s+Pure-FTPd(\s(.*))*\s+-{9,10}?">
     <description>Pure-FTPd versions &gt;= 1.0.14 - Config data can be zero or more of: [privsep] [TLS]</description>
+    <!-- There is no pureftpd.config value in the example below
+         because we expect it to be missing. Also, setting it as the
+         enpty string throws an error. -->
     <example>---------- Welcome to Pure-FTPd ----------</example>
-    <example>--------- Bienvenido a Pure-FTPd [privsep] [TLS] ----------</example>
-    <example>---------  Pure-FTPd [privsep] ----------</example>
-    <example>--------- Welcome to Pure-FTPd [privsep] [TLS] ----------</example>
-    <example>--------- Welcome to Pure-FTPd [privsep] [TLS] ----------&#13;
+    <example pureftpd.config="[privsep] [TLS]">--------- Bienvenido a Pure-FTPd [privsep] [TLS] ----------</example>
+    <example pureftpd.config="[privsep]">---------  Pure-FTPd [privsep] ----------</example>
+    <example pureftpd.config="[privsep] [TLS]">--------- Welcome to Pure-FTPd [privsep] [TLS] ----------</example>
+    <example pureftpd.config="[privsep] [TLS]">--------- Welcome to Pure-FTPd [privsep] [TLS] ----------&#13;
 more text</example>
-    <param pos="1" name="pureftpd.config"/>
+    <param pos="2" name="pureftpd.config"/>
     <param pos="0" name="service.family" value="Pure-FTPd"/>
     <param pos="0" name="service.product" value="Pure-FTPd"/>
   </fingerprint>
